@@ -4,6 +4,7 @@ import { Box, Text} from 'react-native-design-utility'
 import OnboardingLogo from '../commons/OnboardingLogo';
 import LoginButton from '../commons/LoginButton'
 import {FacebookAPI} from '../api/Facebook'
+import {GoogleAPI} from '../api/Google'
 
 // FIX: Adding this as a custom component
 const BoxAnimated = Animated.createAnimatedComponent(Box)
@@ -29,8 +30,13 @@ export default class LoginScreen extends Component {
     }).start()
   }
 
-  onGooglePress = () => {
-    Alert.alert('Google Pressed')
+  onGooglePress = async () => {
+    try {
+      const token = await GoogleAPI.loginAsync()
+      console.log('token', token)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   onFacebookPress = async () => {

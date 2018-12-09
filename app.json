@@ -26,6 +26,12 @@
       "supportsTablet": true
     },
     "facebookAppId": "324185448426734",
-    "facebookScheme": "fb324185448426734"
+    "facebookScheme": "fb324185448426734",
+    "extra" : {
+      "googleAppId" :{
+        "ios" : "249060187581-ah554uc53bmnhovpt3ku48qs7i9u31tm.apps.googleusercontent.com",
+        "android": "249060187581-2011lucrs22ehr2qeh33oma07eh1vr10.apps.googleusercontent.com"
+      }
+    }
   }
 }
