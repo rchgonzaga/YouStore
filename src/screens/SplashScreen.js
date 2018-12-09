@@ -31,7 +31,7 @@ export default class SplashScreen extends Component {
           </Text>
         </Box>
 
-        <Text size="sm">set your own app store.</Text>
+        <Text size="sm">Your store, your app, your way</Text>
 
       </Box>
     )
