@@ -3,6 +3,10 @@ import {Alert, Animated} from 'react-native'
 import { Box, Text} from 'react-native-design-utility'
 import OnboardingLogo from '../commons/OnboardingLogo';
 import LoginButton from '../commons/LoginButton'
+import {FacebookAPI} from '../api/Facebook'
+
+// FIX: Adding this as a custom component
+const BoxAnimated = Animated.createAnimatedComponent(Box)
 
 export default class LoginScreen extends Component {
   state = {
@@ -29,8 +33,13 @@ export default class LoginScreen extends Component {
     Alert.alert('Google Pressed')
   }
 
-  onFacebookPress = () => {
-    Alert.alert('Facebook Pressed')
+  onFacebookPress = async () => {
+    try {
+      const token = await FacebookAPI.loginAsync()
+      console.log('token', token)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   componentDidMount(){
@@ -41,20 +50,20 @@ export default class LoginScreen extends Component {
     const { opacity } = this.state
     const logoTranslations = this.state.position.interpolate({
       inputRange: [0,1],
-      outputRange: [100,0]
+      outputRange: [140,0]
     })
 
     return (
       <Box f={1} center>
-        <Animated.View style={{flex:1, transform: [{
+        <BoxAnimated style={{flex:1, transform: [{
           translateY: logoTranslations,
         }]}}>
           <Box f={1} center>
             <OnboardingLogo />
           </Box>
-        </Animated.View>
+        </BoxAnimated>
 
-        <Animated.View style={{
+        <BoxAnimated style={{
             flex: 0.9, opacity, 
             height: '100%',
             width: '100%',
@@ -65,7 +74,7 @@ export default class LoginScreen extends Component {
             <LoginButton type="google" onPress={this.onGooglePress}>Login with Google</LoginButton>
             <LoginButton type="facebook" onPress={this.onFacebookPress}>Login with Facebook</LoginButton>
           </Box>
-        </Animated.View>
+        </BoxAnimated>
 
       </Box>
     )
