@@ -42,6 +42,9 @@ const color = {
   greenLight: '#66bb6a',
   greenLighter: '#81c784',
   greenLightest: '#a5d6a7',
+
+  facebookBlue: '#3b5998',
+  googleBlue: '#4885ed'
 };
 
 const theme = {
@@ -76,6 +79,7 @@ const theme = {
   },
   color,
   space: {
+    '2xs': 6,
     xs: 8,
     sm: 16,
     md: 24,
@@ -99,18 +103,21 @@ const theme = {
   shadows: [
     {
       shadowColor: color.black,
+      elevation: 5, 
       shadowOffset: {
-        width: 0,
-        height: 0,
+        width: 2,
+        height: 2,
       },
       shadowOpacity: 1,
       shadowRadius: 1,
     },
     {
       shadowColor: color.black,
+      elevation: 2,  
+      zIndex:999,
       shadowOffset: {
-        width: 0,
-        height: 0,
+        width: 5,
+        height: 5,
       },
       shadowOpacity: 0.6,
       shadowRadius: 5,
