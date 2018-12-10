@@ -1,5 +1,6 @@
-import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
 import React, {Component} from 'react'
+import { NavigationService } from '../api/NavigationService';
+import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
 
 const AuthNavigator = createStackNavigator({
         Login: {
@@ -45,7 +46,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <AppContainer>
-                <AppNavigator />
+                <AppNavigator ref={r => NavigationService.setTopLevelNavigator(r)} />
             </AppContainer>
         )
     }

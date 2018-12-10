@@ -5,7 +5,7 @@
 
 import * as Yup from 'yup'
 import { PROVIDER_ENUM } from './customer.model'
-import { getOrCreateCustomer } from './customer'
+import { getOrCreateCustomer, me } from './customer'
 import { AuthServices } from '../../services/Auth'
 import { AuthProvider } from '../../services/authProvider'
 
@@ -40,6 +40,23 @@ export const create = async (req, res) => {
     const jwtToken = AuthServices.createToken(customer)
     res.status(200).json({token: jwtToken, customer})
 
+  } catch (error) {
+    res.status(400).json({ message: error.message })
+  }
+}
+
+/**
+ * Customer.getUserInfo: Get the user informations
+ */
+export const getUserInfo = async (req, res) => {
+  try {
+    if (req.user) {
+      const userInfo = await me(req.user._id)
+
+      res.status(200).json(userInfo)
+    } else {
+      res.status(400).json({ message: 'No User' })
+    }
   } catch (error) {
     res.status(400).json({ message: error.message })
   }
