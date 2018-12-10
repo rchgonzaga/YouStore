@@ -1,5 +1,13 @@
+/**
+ * Customer schema for mongodb
+ */
 import mongoose, { Schema } from 'mongoose';
 
+/**
+ * Initial login providers
+ * TODO:
+ * - [] - Modify this to be dynamic or read from another place the providers needed.
+ */
 export const PROVIDER_ENUM = ['FACEBOOK', 'GOOGLE'];
 
 const CustomerSchema = new Schema(
