@@ -3,7 +3,36 @@
  */
 
 import Customer from './customer.model';
+import { AuthServices } from '../../services/Auth';
 import { buildCustomerInfo } from './buildCustomerInfo';
+
+/**
+ * Function responsible for login a customer
+ * Required data: req,res,next 
+ * Optional data: none
+ */
+export const customerAuth = async (req, res, next) => {
+    const token = AuthServices.getTokenFromHeaders(req);
+
+    // checks for a token, if we don't have one, return an error
+    if (!token) {
+        req.user = null;
+        return res.sendStatus(401);
+    }
+
+    // Find the customer using the id that is inside the token
+    const customer = await Customer.findById(token.id);
+
+    // If we don't find the customer, return 401
+    if (!customer) {
+        req.user = null;
+        return res.sendStatus(401);
+    }
+
+    // If we found a customer, return it and call next()
+    req.user = customer;
+    return next();
+};
 
 /**
  * Try to get an existent user or create one in mongoDB
