@@ -52,4 +52,5 @@ export const NavigationService = {
   navigator: _navigator,
 }
 
+// TODO: Remove this, test only
 window.NavigationService = NavigationService

@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import {Alert, Animated} from 'react-native'
-import { Box, Text} from 'react-native-design-utility'
-import OnboardingLogo from '../commons/OnboardingLogo';
-import LoginButton from '../commons/LoginButton'
-import {FacebookAPI} from '../api/Facebook'
 import {GoogleAPI} from '../api/Google'
+import React, { Component } from 'react'
+import {FacebookAPI} from '../api/Facebook'
+import {Alert, Animated} from 'react-native'
+import LoginButton from '../commons/LoginButton'
+import { inject } from 'mobx-react/native'
+import { Box, Text} from 'react-native-design-utility'
+import OnboardingLogo from '../commons/OnboardingLogo'
 
 // FIX: Adding this as a custom component
 const BoxAnimated = Animated.createAnimatedComponent(Box)
 
+@inject('currentUser')
 export default class LoginScreen extends Component {
   state = {
     opacity: new Animated.Value(0),
@@ -33,7 +35,7 @@ export default class LoginScreen extends Component {
   onGooglePress = async () => {
     try {
       const token = await GoogleAPI.loginAsync()
-      console.log('token', token)
+      await this.props.currentUser.login(token, 'GOOGLE')
     } catch (error) {
       console.log(error)
     }
@@ -42,7 +44,7 @@ export default class LoginScreen extends Component {
   onFacebookPress = async () => {
     try {
       const token = await FacebookAPI.loginAsync()
-      console.log('token', token)
+      await this.props.currentUser.login(token, 'FACEBOOK')
     } catch (error) {
       console.log(error)
     }
@@ -58,7 +60,7 @@ export default class LoginScreen extends Component {
       inputRange: [0,1],
       outputRange: [140,0]
     })
-
+    
     return (
       <Box f={1} center>
         <BoxAnimated style={{flex:1, transform: [{
