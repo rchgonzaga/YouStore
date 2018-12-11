@@ -44,9 +44,13 @@ export default class Navigation extends Component {
     }
 
     render() {
+        // NavigationService.setTopLevelNavigator(createAppContainer)
         return (
-            <AppContainer>
-                <AppNavigator ref={r => NavigationService.setTopLevelNavigator(r)} />
+            <AppContainer 
+                ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                }}>
+                <AppNavigator />
             </AppContainer>
         )
     }
