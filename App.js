@@ -3,7 +3,7 @@ import {ActivityIndicator} from 'react-native'
 
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility'
 import Naviation from './src/screens'
-import { images } from './src/constants/images'
+import { images, tabBarIcons } from './src/constants/images'
 import { cacheImages } from './src/util/cacheImages'
 import {Provider} from 'mobx-react/native'
 import { store } from './src/models'
@@ -20,8 +20,17 @@ export default class App extends React.Component {
     this.cacheAssets()
   }
 
+  /**
+   * Cache all the images so that the user can't see any dalay using the app
+   */
   cacheAssets = async () => {
-    const imagesAssets = cacheImages(Object.values(images))
+
+    const imagesAssets = cacheImages([
+      ...Object.values(images),
+      ...Object.values(tabBarIcons.active),
+      ...Object.values(tabBarIcons.inactive),
+    ])
+
     await Promise.all([...imagesAssets])
     this.setState({
       isReady: true
