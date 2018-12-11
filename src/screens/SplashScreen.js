@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import { Box, Text } from 'react-native-design-utility';
 import { inject } from 'mobx-react/native';
-
 import OnboardingLogo from '../commons/OnboardingLogo';
-import { NavigationService } from '../api/NavigationService';
+import { Box, Text } from 'react-native-design-utility';
 
 @inject('currentUser')
 class SplashScreen extends Component {
   state = {};
 
+  /**
+   * Mounted
+   */
   componentDidMount() {
     this.checkAuth();
   }
 
+  /**
+   * checkAuth: When the component is mounted, call this to check if the user is already logged or not
+   */
   checkAuth = async () => {
     setTimeout(async () => {
       await this.props.currentUser.setupAuth()
     }, 2000)
   };
 
+  /**
+   * Render
+   */
   render() {
     return (
       <Box f={1} center>

@@ -1,8 +1,17 @@
-import React, {Component} from 'react'
-import { NavigationService } from '../api/NavigationService';
-import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator, createAppContainer} from 'react-navigation'
+import {
+    createStackNavigator,
+    createSwitchNavigator,
+    createBottomTabNavigator,
+    createAppContainer
+  } from 'react-navigation'
+  import React, { Component } from 'react'
+  
+  import { NavigationService } from '../api/NavigationService'
+  import { theme } from '../constants/theme'
+  import TabBar from '../components/TabBar'
 
-const AuthNavigator = createStackNavigator({
+const AuthNavigator = createStackNavigator(
+    {
         Login: {
             getScreen: () => require('./LoginScreen').default
         },
@@ -15,15 +24,40 @@ const AuthNavigator = createStackNavigator({
     }
 )
 
-const TabNavigator = createBottomTabNavigator({
-    Home: {
-        getScreen: () => require('./HomeScreen').default
+const TabNavigator = createBottomTabNavigator(
+    {
+        Home: {
+            getScreen: () => require('./HomeScreen').default
+        },
+        List: {
+            getScreen: () => require('./ListScreen').default,
+        },
+        Stores: {
+            getScreen: () => require('./StoresScreen').default,
+        },
+        Order: {
+            getScreen: () => require('./OrderScreen').default,
+        }
+    },
+    {
+        tabBarComponent: props => <TabBar {...props} />,
+        navigationOptions: {
+            headerTintColor: theme.color.blueDarkest,
+            headerStyle: {
+                backgroundColor: theme.color.blueDarkest,
+                elevation: null
+            }
+        }
     }
-})
+)
 
-const MainNavigator = createStackNavigator({
-    Tab: TabNavigator,
-})
+const MainNavigator = createStackNavigator(
+    {
+        Tab: TabNavigator,
+    },
+    {
+    }
+)
 
 const AppNavigator = createSwitchNavigator({
         Splash: {
@@ -36,7 +70,7 @@ const AppNavigator = createSwitchNavigator({
     }
 )
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator)
 
 export default class Navigation extends Component {
     state = {
@@ -48,7 +82,7 @@ export default class Navigation extends Component {
         return (
             <AppContainer 
                 ref={navigatorRef => {
-                    NavigationService.setTopLevelNavigator(navigatorRef);
+                    NavigationService.setTopLevelNavigator(navigatorRef)
                 }}>
                 <AppNavigator />
             </AppContainer>

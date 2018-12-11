@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 const color = {
   black: '#212121',
 
@@ -121,6 +123,22 @@ const theme = {
       },
       shadowOpacity: 0.6,
       shadowRadius: 5,
+    },
+    {
+      shadowColor: color.black,
+      ...Platform.select({
+        ios: {
+          shadowOffset: { width: 5, height: 5 },
+          shadowOpacity: 1.5,
+          shadowRadius: 10
+        },
+        android: {
+          shadowOffset: { width: 0, height: 5 },
+          shadowOpacity: 1.5,
+          shadowRadius: 10,
+          elevation: 12,
+        },
+      })
     },
   ],
   borders: [
