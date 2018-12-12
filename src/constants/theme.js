@@ -128,9 +128,9 @@ const theme = {
       shadowColor: color.black,
       ...Platform.select({
         ios: {
-          shadowOffset: { width: 5, height: 5 },
+          shadowOffset: { width: 0, height: 5 },
           shadowOpacity: 1.5,
-          shadowRadius: 10
+          shadowRadius: 5
         },
         android: {
           shadowOffset: { width: 0, height: 5 },
