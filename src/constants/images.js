@@ -16,4 +16,9 @@ export const tabBarIcons = {
       Stores: require('../../assets/img/StoresIconInactive.png'),
       Order:  require('../../assets/img/OrderIconInactive.png'),
     },
-  };
+  }
+
+
+export const productImgs = {
+    apple: require('../../assets/img/products/apple.png'),
+}
