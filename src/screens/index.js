@@ -3,12 +3,22 @@ import {
     createSwitchNavigator,
     createBottomTabNavigator,
     createAppContainer
-  } from 'react-navigation'
-  import React, { Component } from 'react'
+} from 'react-navigation'
+import React, { Component } from 'react'
   
-  import { NavigationService } from '../api/NavigationService'
-  import { theme } from '../constants/theme'
-  import TabBar from '../components/TabBar'
+import { NavigationService } from '../api/NavigationService'
+import { theme } from '../constants/theme'
+import TabBar from '../components/TabBar'
+
+const primaryHeader = {
+    headerTintColor: theme.color.blueDarkest,
+    headerStyle: {
+        backgroundColor: theme.color.blueDarkest
+    },
+    headerTitleStyle: {
+        fontWeight: '400',
+    },
+}
 
 const AuthNavigator = createStackNavigator(
     {
@@ -24,11 +34,18 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
+const HomeStack = createStackNavigator(
+    {
+        Home: {getScreen: () => require('./HomeScreen').default}
+    },
+    {
+        navigationOptions: { ...primaryHeader }
+    }
+)
+
 const TabNavigator = createBottomTabNavigator(
     {
-        Home: {
-            getScreen: () => require('./HomeScreen').default
-        },
+        Home: HomeStack,
         List: {
             getScreen: () => require('./ListScreen').default,
         },
@@ -41,11 +58,12 @@ const TabNavigator = createBottomTabNavigator(
     },
     {
         tabBarComponent: props => <TabBar {...props} />,
+        // FIXME: Check this
         navigationOptions: {
-            headerTintColor: theme.color.blueDarkest,
-            headerStyle: {
-                backgroundColor: theme.color.blueDarkest,
-                elevation: null
+            header: null,
+            headerMode: 'none',
+            navigationOptions: {
+                header: null
             }
         }
     }
@@ -56,6 +74,13 @@ const MainNavigator = createStackNavigator(
         Tab: TabNavigator,
     },
     {
+        navigationOptions: {
+            header: null,
+            headerMode: 'none',
+            navigationOptions: {
+                header: null
+            }
+        }
     }
 )
 
