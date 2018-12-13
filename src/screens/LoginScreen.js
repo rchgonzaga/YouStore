@@ -79,8 +79,8 @@ export default class LoginScreen extends Component {
             margin: 0,
           }}>
           <Box f={0.9} w="100%">
-            <LoginButton type="google" onPress={this.onGooglePress}>Login with Google</LoginButton>
-            <LoginButton type="facebook" onPress={this.onFacebookPress}>Login with Facebook</LoginButton>
+            <LoginButton type="google" onPress={this.onGooglePress}>Logar com Google</LoginButton>
+            <LoginButton type="facebook" onPress={this.onFacebookPress}>Logar com Facebook</LoginButton>
           </Box>
         </BoxAnimated>
 

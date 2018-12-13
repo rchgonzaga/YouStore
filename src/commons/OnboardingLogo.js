@@ -11,12 +11,12 @@ export default OnboardingLogo = () => {
         </Box>
         <Box mb="sm">
             <Text color="blueDarkest" size="2x1">
-            You
-            <Text color="black" size="2x1">@</Text>
-            <Text color="blue" size="2x1">Store</Text>
+            Café
+            <Text color="black" size="2x1"> </Text>
+            <Text color="blue" size="2x1">Aquinense</Text>
             </Text>
         </Box>
 
-        <Text size="sm">Your store, your app, your way</Text>
+        <Text size="sm">Chama no bete</Text>
     </Box>)
 }

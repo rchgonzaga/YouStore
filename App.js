@@ -1,5 +1,5 @@
 import React from 'react'
-import {ActivityIndicator} from 'react-native'
+import { ActivityIndicator, UIManager } from 'react-native'
 
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility'
 import Naviation from './src/screens'
@@ -9,6 +9,8 @@ import {Provider} from 'mobx-react/native'
 import { store } from './src/stores'
 
 import { theme } from './src/constants/theme'
+UIManager.setLayoutAnimationEnabledExperimental 
+  && UIManager.setLayoutAnimationEnabledExperimental(true)
 
 export default class App extends React.Component {
   
