@@ -4,6 +4,7 @@ import { Box, Text } from 'react-native-design-utility'
 import { theme } from '../constants/theme'
 import CategoryCard from '../components/CategoryCard'
 import DealCaroussel from '../components/DealCaroussel'
+import ShoppingCartIcon from '../components/ShoppingCartIcon'
 
 // FIXME: This will come from backend
 const categories = [
@@ -34,6 +35,7 @@ const NUM_COLUMNS = 3
 class HomeScreen extends Component {
 
   // FIXME: this has to go to index.js file
+  // - for some reason, it is not applying what is inside the main index.js file
   static navigationOptions = {
     title: 'You@Store',
     headerTintColor: theme.color.white,
@@ -42,7 +44,8 @@ class HomeScreen extends Component {
     },
     headerTitleStyle: {
       fontWeight: '400',
-    }
+    },
+    headerRight: <ShoppingCartIcon />
   }
 
   state = {}

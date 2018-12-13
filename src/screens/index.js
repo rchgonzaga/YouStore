@@ -5,10 +5,10 @@ import {
     createAppContainer
 } from 'react-navigation'
 import React, { Component } from 'react'
-  
 import { NavigationService } from '../api/NavigationService'
 import { theme } from '../constants/theme'
 import TabBar from '../components/TabBar'
+import ShoppingCartIcon from '../components/ShoppingCartIcon'
 
 const primaryHeader = {
     headerTintColor: theme.color.blueDarkest,
@@ -34,10 +34,24 @@ const AuthNavigator = createStackNavigator(
     }
 )
 
+const ShoppingCartNavigator = createStackNavigator(
+    {
+        ShoppingCart: {
+            getScreen: () => require('./ShoppingCartScreen').default,
+            navigationOptions: {
+                headerStyle: {
+                    backgroundColor: theme.color.white,
+                }
+            }
+        }
+    }
+)
+
 const HomeStack = createStackNavigator(
     {
-        Home: {getScreen: () => require('./HomeScreen').default},
-        Category: {getScreen: () => require('./CategoryScreen').default}
+        Home: { getScreen: () => require('./HomeScreen').default },
+        Category: { getScreen: () => require('./CategoryScreen').default },
+        ShoppingCart: {getScreen: () => require('./ShoppingCartScreen').default}
     },
     {
         navigationOptions: { ...primaryHeader }
@@ -72,26 +86,17 @@ const TabNavigator = createBottomTabNavigator(
 
 const MainNavigator = createStackNavigator(
     {
-        Tab: TabNavigator,
-    },
-    {
-        navigationOptions: {
-            header: null,
-            headerMode: 'none',
-            navigationOptions: {
-                header: null
-            }
-        }
+        Tab: TabNavigator
     }
 )
 
 const AppNavigator = createSwitchNavigator({
-        Splash: {
-            getScreen: () => require('./SplashScreen').default
-        },
-        Auth: AuthNavigator,
-        Main: MainNavigator
-    }, {
+    Splash: {
+        getScreen: () => require('./SplashScreen').default
+    },
+    Auth: AuthNavigator,
+    Main: MainNavigator
+}, {
         initialRouteName: 'Splash'
     }
 )
@@ -106,7 +111,7 @@ export default class Navigation extends Component {
     render() {
         // NavigationService.setTopLevelNavigator(createAppContainer)
         return (
-            <AppContainer 
+            <AppContainer
                 ref={navigatorRef => {
                     NavigationService.setTopLevelNavigator(navigatorRef)
                 }}>

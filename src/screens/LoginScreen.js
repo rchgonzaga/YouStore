@@ -10,7 +10,7 @@ import OnboardingLogo from '../commons/OnboardingLogo'
 // FIX: Adding this as a custom component
 const BoxAnimated = Animated.createAnimatedComponent(Box)
 
-@inject('currentUser')
+@inject('authStore')
 export default class LoginScreen extends Component {
   state = {
     opacity: new Animated.Value(0),
@@ -35,7 +35,7 @@ export default class LoginScreen extends Component {
   onGooglePress = async () => {
     try {
       const token = await GoogleAPI.loginAsync()
-      await this.props.currentUser.login(token, 'GOOGLE')
+      await this.props.authStore.login(token, 'GOOGLE')
     } catch (error) {
       console.log(error)
     }
@@ -44,7 +44,7 @@ export default class LoginScreen extends Component {
   onFacebookPress = async () => {
     try {
       const token = await FacebookAPI.loginAsync()
-      await this.props.currentUser.login(token, 'FACEBOOK')
+      await this.props.authStore.login(token, 'FACEBOOK')
     } catch (error) {
       console.log(error)
     }
