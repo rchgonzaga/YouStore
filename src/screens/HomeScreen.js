@@ -10,22 +10,22 @@ import ShoppingCartIcon from '../components/ShoppingCartIcon'
 const categories = [
   {
     id: 1,
-    title: 'Grocery',
+    title: 'Arabica',
     image: require('../../assets/img/cart.png'),
   },
   {
     id: 2,
-    title: 'Drugs',
+    title: 'Bourbon',
     image: require('../../assets/img/drugs.png'),
   },
   {
     id: 3,
-    title: 'Pets',
+    title: 'Novo Mundo',
     image: require('../../assets/img/pets.png'),
   },
   {
     id: 4,
-    title: 'video games',
+    title: 'CutucaAI',
     image: require('../../assets/img/pets.png'),
   },
 ]
@@ -37,7 +37,7 @@ class HomeScreen extends Component {
   // FIXME: this has to go to index.js file
   // - for some reason, it is not applying what is inside the main index.js file
   static navigationOptions = {
-    title: 'You@Store',
+    title: "Café Aquinense",
     headerTintColor: theme.color.white,
     headerStyle: {
       backgroundColor: theme.color.blueDarkest

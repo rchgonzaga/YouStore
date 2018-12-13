@@ -16,6 +16,17 @@ export const ShoppingCartStore = types
         get totalProducts() {
             return self.products.length
         },
+        get totalAmount() {
+          return self.products
+            .reduce((acc, current) => acc + parseFloat(current.totalPrice), 0)
+            .toFixed(2);
+        },
+        /**
+         * Flatlist expect real arrays - Mobx works with a different one
+         */
+        get productsList() {
+          return self.products.slice();
+        },
     }))
 
     /**
