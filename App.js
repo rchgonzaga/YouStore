@@ -3,10 +3,10 @@ import {ActivityIndicator} from 'react-native'
 
 import { UtilityThemeProvider, Box, Text } from 'react-native-design-utility'
 import Naviation from './src/screens'
-import { images, tabBarIcons } from './src/constants/images'
+import { images, tabBarIcons, productImgs } from './src/constants/images'
 import { cacheImages } from './src/util/cacheImages'
 import {Provider} from 'mobx-react/native'
-import { store } from './src/models'
+import { store } from './src/stores'
 
 import { theme } from './src/constants/theme'
 
@@ -29,6 +29,7 @@ export default class App extends React.Component {
       ...Object.values(images),
       ...Object.values(tabBarIcons.active),
       ...Object.values(tabBarIcons.inactive),
+      ...Object.values(productImgs),
     ])
 
     await Promise.all([...imagesAssets])
