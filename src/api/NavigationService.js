@@ -1,16 +1,11 @@
-/**
- * Easely controls the navigation
- */
 import { NavigationActions } from 'react-navigation'
 
 let _navigator
 
-// Sets the first reference of a screen
 function setTopLevelNavigator(ref) {
   _navigator = ref
 }
 
-// Fire actions passing parameters
 function navigate(routeName, params) {
   _navigator.dispatch(
     NavigationActions.navigate({
@@ -20,12 +15,10 @@ function navigate(routeName, params) {
   )
 }
 
-// Perform a back action
 function back() {
   _navigator.dispatch(NavigationActions.back())
 }
 
-// 
 function popToTop(immediate = true) {
   _navigator.dispatch({
     type: NavigationActions.POP_TO_TOP,
@@ -33,7 +26,6 @@ function popToTop(immediate = true) {
   })
 }
 
-// Resets the current navigation state
 function reset({ actions, index }) {
   _navigator.dispatch({
     type: NavigationActions.RESET,
@@ -42,7 +34,20 @@ function reset({ actions, index }) {
   })
 }
 
-// Export
+function getCurrentRouteName(navigationState) {
+  if (!navigationState) {
+    return null
+  }
+
+  const route = navigationState.routes[navigationState.index]
+
+  if (route.routes) {
+    return getCurrentRouteName(route)
+  }
+
+  return route.routeName
+}
+
 export const NavigationService = {
   navigate,
   setTopLevelNavigator,
@@ -50,7 +55,7 @@ export const NavigationService = {
   popToTop,
   reset,
   navigator: _navigator,
+  getCurrentRouteName,
 }
 
-// TODO: Remove this, test only
 window.NavigationService = NavigationService

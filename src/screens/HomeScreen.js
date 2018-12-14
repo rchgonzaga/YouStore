@@ -5,6 +5,7 @@ import { theme } from '../constants/theme'
 import CategoryCard from '../components/CategoryCard'
 import DealCaroussel from '../components/DealCaroussel'
 import ShoppingCartIcon from '../components/ShoppingCartIcon'
+import ProfileBtn from '../commons/ProfileBtn'
 
 // FIXME: This will come from backend
 const categories = [
@@ -45,28 +46,29 @@ class HomeScreen extends Component {
     headerTitleStyle: {
       fontWeight: '400',
     },
-    headerRight: <ShoppingCartIcon />
+    headerRight: <ShoppingCartIcon />,
+    headerLeft: <ProfileBtn />
   }
 
   state = {}
 
   renderItem = ({ item, index }) => {
-    let style = {};
+    let style = {}
 
     if (index % NUM_COLUMNS !== 0) {
-      style.borderLeftWidth = 2;
-      style.borderLeftColor = theme.color.greyLighter;
+      style.borderLeftWidth = 2
+      style.borderLeftColor = theme.color.greyLighter
     }
     return (
       <Box w={1 / NUM_COLUMNS} bg="white" h={120} style={style}>
         <CategoryCard {...item} />
       </Box>
-    );
+    )
   }
 
-  keyExtractor = item => String(item.id);
+  keyExtractor = item => String(item.id)
 
-  separator = () => <Box h={2} bg="greyLighter" />;
+  separator = () => <Box h={2} bg="greyLighter" />
 
   render() {
     return (
@@ -86,7 +88,7 @@ class HomeScreen extends Component {
           />
         </Box>
       </Box>
-    );
+    )
   }
 }
 
