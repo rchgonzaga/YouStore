@@ -13,7 +13,6 @@ class CategoryScreen extends Component {
 
     state = {}
     render() {
-        console.log(this.props)
         return (
             <Box>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>

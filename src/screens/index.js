@@ -62,18 +62,24 @@ const primaryHeader = {
     {
       navigationOptions: {
         headerBackTitle: null,
-        headerTintColor: theme.color.blueDarkest,
+        headerTintColor: theme.color.green,
+        headerStyle: {
+          backgroundColor: theme.color.white,
+        },
         headerTitleStyle: {
-            color: theme.color.black
-        }
+          color: theme.color.black,
+        },
       },
     },
-  )
+  );
   
   const AddressFormStack = createStackNavigator(
     {
       AddressForm: {
         getScreen: () => require('./AddressFormScreen').default,
+      },
+      AutocompleteAddress: {
+        getScreen: () => require('./AutocompleteAddressScreen').default,
       },
     },
     {
@@ -176,7 +182,9 @@ const primaryHeader = {
       initialRouteName: 'Splash',
     },
   )
-  
+
+
+
 const AppContainer = createAppContainer(AppNavigator)
 
 export default class Navigation extends Component {
@@ -195,3 +203,5 @@ export default class Navigation extends Component {
         )
     }
 }
+
+

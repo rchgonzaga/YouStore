@@ -79,3 +79,4 @@ typings/
 .dynamodb/ 
 .DS_Store
 .DS_Store
+src/constants/env.js
