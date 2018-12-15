@@ -43,9 +43,9 @@ class AddressFormScreen extends Component {
         this.props.navigation.goBack(null);
     
 
-        console.log('\n =====================================');
-        console.log(value);
-        console.log('\n =====================================');
+        // console.log('\n =====================================');
+        // console.log(value);
+        // console.log('\n =====================================');
 
         const address = buildAddress(value);
     
