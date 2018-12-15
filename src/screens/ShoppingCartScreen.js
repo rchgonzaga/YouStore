@@ -34,9 +34,6 @@ class ShoppingCartScreen extends Component {
       )
     }
 
-    console.log('products', shoppingCartStore.products)
-    console.log('productsList', shoppingCartStore.productsList)
-
     return (
       <FlatList
         data={shoppingCartStore.productsList}
