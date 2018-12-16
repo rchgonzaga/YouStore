@@ -3,7 +3,7 @@
  */
 import './config/db';
 import express from 'express';
-import { CustomerRoutes } from './modules';
+import { CustomerRoutes, AddressRoutes } from './modules';
 import middlewaresConfig from './config/middlewares';
 
 const app = express();
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
  * - [] - Make this more dynamic
  */
 app.use('/api/v1/customers', CustomerRoutes);
+app.use('/api/v1/addresses', AddressRoutes);
 
 app.listen(3000, err => {
   if (err) {

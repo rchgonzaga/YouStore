@@ -23,6 +23,10 @@ export const buildAddress = address =>
             acc.city = value
         }
 
+        if (current.types.includes('administrative_area_level_1')) {
+            acc.province = value
+        }
+
         if (current.types.includes('country')) {
             acc.country = value
         }
